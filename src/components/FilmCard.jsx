@@ -9,7 +9,7 @@ export default function FilmCard({ film }) {
                 <p>{film.abstract}</p>
                 <div className="mb-1">Direct by: {film.director}</div>
                 <div className="mb-2">realese: {film.release_year}</div>
-                <Link to="/Films/1" className="btn btn-secondary">Read More</Link>
+                <Link to={`/films/${film.id}`} className="btn btn-secondary" >Read More</Link>
             </div>
         </div>
     )

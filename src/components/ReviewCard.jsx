@@ -1,12 +1,17 @@
-export default function ReviewCard() {
+export default function ReviewCard({ text, name, vote, update }) {
+    console.log(text);
+
+    console.log(vote);
+
     return (
         <div className="review card mb-3">
             <div className="card-body">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, tenetur?</p>
-                <span>by: user</span>
+                <p>{text}</p>
+                <span>by: {name}</span>
                 <div className="vote mt-3">
-                    <strong>Vote: 4/5</strong>
+                    <strong>Vote: {vote}/5</strong>
                 </div>
+                <div>update: {update}</div>
             </div>
         </div>
     )
