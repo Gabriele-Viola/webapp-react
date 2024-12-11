@@ -13,16 +13,16 @@ export default function AppFooter() {
                         <h4>corporate</h4>
                         <ul className="list-unstyled">
                             <li>
-                                <Link>Link 1</Link>
+                                <Link className="text-decoration-none">Link 1</Link>
                             </li>
                             <li>
-                                <Link>Link 2</Link>
+                                <Link className="text-decoration-none">Link 2</Link>
                             </li>
                             <li>
-                                <Link>Link 3</Link>
+                                <Link className="text-decoration-none">Link 3</Link>
                             </li>
                             <li>
-                                <Link>Link 4</Link>
+                                <Link className="text-decoration-none">Link 4</Link>
                             </li>
                         </ul>
                     </div>
@@ -30,13 +30,13 @@ export default function AppFooter() {
                         <h4>privacy</h4>
                         <ul className="list-unstyled">
                             <li>
-                                <Link>Link 1</Link>
+                                <Link className="text-decoration-none" >Link 1</Link>
                             </li>
                             <li>
-                                <Link>Link 2</Link>
+                                <Link className="text-decoration-none">Link 2</Link>
                             </li>
                             <li>
-                                <Link>Link 3</Link>
+                                <Link className="text-decoration-none">Link 3</Link>
                             </li>
                         </ul>
                     </div>

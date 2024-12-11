@@ -2,9 +2,9 @@ import { Link } from "react-router";
 
 export default function AppHeader() {
     return (
-        <header>
+        <header className="py-2 px-2 bg-danger">
 
-            <Link to='/'>
+            <Link className="text-decoration-none text-dark" to='/'>
                 <strong>Films</strong>
             </Link>
         </header>
