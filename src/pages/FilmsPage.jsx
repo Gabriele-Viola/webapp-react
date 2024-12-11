@@ -8,9 +8,9 @@ export default function FilmsPage() {
         <>
 
             <Banner title='All-Films' subtitle='realy all' leadtext='Lorem ipsum dolor sit amet.' />
-            <div className="container">
+            <section className="mb-4 py-2">
+                <div className="container">
 
-                <section className="mb-2">
 
                     <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
                         {films?.map(film =>
@@ -21,8 +21,8 @@ export default function FilmsPage() {
                         )}
 
                     </div>
-                </section>
-            </div>
+                </div>
+            </section>
         </>
     )
 }

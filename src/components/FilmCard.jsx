@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 export default function FilmCard({ film }) {
     return (
-        <div className="card">
+        <div className="card h-100">
             <div className="card-body">
                 <h3>{film.title}</h3>
                 <h5>{film.genre}</h5>
