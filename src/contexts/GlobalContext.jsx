@@ -27,9 +27,37 @@ function GlobalContextProvider({ children }) {
                 SetSelectedFilm(film)
             })
     }
+    function stars(vote) {
+        let fixVote = vote
+        const afterDot = vote % 1 !== 0 && vote - parseInt(vote)
+        console.log(afterDot);
+        if (afterDot < 0.5) {
+            fixVote = Math.floor(vote)
+        } else if (afterDot >= 0.5) {
+            fixVote = parseInt(vote) + 0.5
+        }
+
+
+        const stars = []
+        for (let i = 0; i < 5; i++) {
+
+            if (i < Math.floor(fixVote)) {
+
+                stars.push(<i key={i} className="bi bi-star-fill"></i>);
+            } else if (i < fixVote) {
+
+                stars.push(<i key={i} className="bi bi-star-half"></i>);
+            } else {
+
+                stars.push(<i key={i} className="bi bi-star"></i>);
+            }
+
+        }
+        return stars
+    }
 
     const values = {
-        films, setFilms, filmUrl, selectedFilm, getSelectedFilm
+        films, setFilms, filmUrl, selectedFilm, getSelectedFilm, stars
     }
     return (
         <GlobalContext.Provider value={values}>
