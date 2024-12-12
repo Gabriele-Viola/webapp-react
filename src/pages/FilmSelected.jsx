@@ -15,10 +15,10 @@ export default function FilmSelected() {
 
     return (
         <>
-            <Banner title={`you selected film is: ${selectedFilm.title}`} subtitle={`${selectedFilm.abstract}`} leadtext={`${selectedFilm.genre}`} />
+            <Banner title={`you selected film is: ${selectedFilm.title}`} subtitle={`${selectedFilm.abstract}`} leadtext={`${selectedFilm.genre}`} button={'add reviews'} />
             <section className="reviews">
                 <div className="container">
-                    {!selectedFilm.reviews ? <h1>no found</h1> : selectedFilm.reviews.map(review => <ReviewCard key={review.id} text={review.text} name={review.name} vote={review.vote} update={review.updated_at} />)}
+                    {!selectedFilm.reviews ? <h1>no found</h1> : selectedFilm.reviews.map(review => <ReviewCard key={review.id} review={review} />)}
 
 
                 </div>
