@@ -3,6 +3,7 @@ import FilmsPage from "./pages/FilmsPage"
 import DefLayout from "./Layout/DefLayout"
 import FilmSelected from "./pages/FilmSelected"
 import { GlobalContextProvider } from "./contexts/GlobalContext"
+import ScroolTop from "./components/ScrollTop"
 
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
     <>
       <GlobalContextProvider>
         <BrowserRouter>
-
+          <ScroolTop />
           <Routes>
             <Route element={<DefLayout />}>
 

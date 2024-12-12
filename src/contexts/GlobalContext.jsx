@@ -56,6 +56,7 @@ function GlobalContextProvider({ children }) {
         return stars
     }
 
+
     const values = {
         films, setFilms, filmUrl, selectedFilm, getSelectedFilm, stars
     }
