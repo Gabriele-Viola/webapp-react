@@ -1,9 +1,56 @@
+import { useState } from "react"
 import { useGlobalContext } from "../contexts/GlobalContext"
+export default function AppFormRev({ movie_id }) {
+    const { success, setSuccess } = useGlobalContext()
+    const id = movie_id
 
-export default function AppFormRev() {
-    const { HandleFormSubmit, userName, success, setUserName, setRating, rating, review, setReview, errorMessage } = useGlobalContext()
+    const [userName, setUserName] = useState('')
+    const [review, setReview] = useState('')
+    const [rating, setRating] = useState(0)
+    const [errorMessage, setErrorMessage] = useState()
+
+    function HandleinputToggle() {
+        document.getElementById('inputForm').classList.toggle('d-none')
+    }
+
+    function HandleFormSubmit(e) {
+        e.preventDefault()
+
+        if (userName.length < 4 || review.length < 10 || rating == 0) {
+            setErrorMessage('name, rating or review is empty')
+        } else {
+            setErrorMessage(null)
+            const formData = {
+                name: userName,
+                text: review,
+                vote: rating
+            }
+            console.log(formData);
+
+            const API_POST_REVIEW_URL = `http://localhost:3000/api/films/${id}/review`
+            fetch(API_POST_REVIEW_URL, {
+                method: 'POST',
+                body: JSON.stringify(formData),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }).then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.success) {
+                        setSuccess(' Thanks for review!')
+                    }
+                    setTimeout(HandleinputToggle(), 1000)
 
 
+                }).catch(err => console.error(err))
+        }
+
+        setUserName('')
+        setReview('')
+        setRating(0)
+
+    }
 
 
     return (

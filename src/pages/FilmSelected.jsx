@@ -25,7 +25,7 @@ export default function FilmSelected() {
             <section className="reviews">
                 <div className="container">
 
-                    <AppFormRev />
+                    <AppFormRev movie_id={id} />
                     <div className="text-end mb-4">
                         <strong>Average:</strong> <span className="text-warning">{stars(selectedFilm.average_vote)}</span>
                         {selectedFilm.average_vote && <div className="text-muted">{Number(selectedFilm.average_vote).toFixed(1)}</div>}

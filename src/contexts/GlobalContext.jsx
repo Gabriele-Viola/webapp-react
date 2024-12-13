@@ -9,10 +9,7 @@ function GlobalContextProvider({ children }) {
     const [films, setFilms] = useState([])
     const [selectedFilm, SetSelectedFilm] = useState([])
     const [success, setSuccess] = useState('')
-    const [userName, setUserName] = useState('')
-    const [review, setReview] = useState('')
-    const [rating, setRating] = useState(0)
-    const [errorMessage, setErrorMessage] = useState()
+
 
 
     useEffect(() => {
@@ -59,54 +56,12 @@ function GlobalContextProvider({ children }) {
         return stars
     }
 
-    function HandleFormSubmit(e) {
-        e.preventDefault()
-
-        if (userName.length < 4 || review.length < 10 || rating == 0) {
-            setErrorMessage('name, rating or review is empty')
-        } else {
-            setErrorMessage(null)
-            const formData = {
-                name: userName,
-                text: review,
-                vote: rating
-            }
-            console.log(formData);
-
-            const API_POST_REVIEW_URL = `http://localhost:3000/api/films/${id}/review`
-            fetch(API_POST_REVIEW_URL, {
-                method: 'POST',
-                body: JSON.stringify(formData),
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            }).then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                    if (data.success) {
-                        setSuccess(' Thanks for review!')
-                    }
-                    setTimeout(HandleinputToggle(), 1000)
-
-
-                }).catch(err => console.error(err))
-        }
-
-        setUserName('')
-        setReview('')
-        setRating(0)
-
-    }
-
-
     function HandleFormToggle() {
         document.getElementById('form-card').classList.toggle('d-none')
     }
-    function HandleinputToggle() {
-        document.getElementById('inputForm').classList.toggle('d-none')
-    }
+
     const values = {
-        films, setFilms, filmUrl, selectedFilm, getSelectedFilm, stars, HandleFormToggle, success, userName, setUserName, setRating, rating, review, setReview, errorMessage
+        films, setFilms, filmUrl, selectedFilm, getSelectedFilm, stars, HandleFormToggle, success, setSuccess
     }
     return (
         <GlobalContext.Provider value={values}>
