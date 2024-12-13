@@ -15,7 +15,8 @@ export default function FilmSelected() {
     useEffect(() => {
         getSelectedFilm(id)
     }, [])
-    // console.log(selectedFilm);
+
+
 
     function HandleFormSubmit(e) {
         e.preventDefault()
@@ -36,9 +37,9 @@ export default function FilmSelected() {
                 method: 'POST',
                 body: JSON.stringify(formData),
                 headers: {
-                    "Content-Type": "applcation/json"
+                    "Content-Type": "application/json"
                 }
-            }).then(req => resizeBy.json())
+            }).then(res => res.json())
                 .then(data => {
                     console.log(data);
 
@@ -54,7 +55,7 @@ export default function FilmSelected() {
 
             <section className="reviews">
                 <div className="container">
-                    <div id="form-card" className="card mb-4">
+                    <div id="form-card" className="card mb-4 d-none">
                         <div className="card-body">
                             <form onSubmit={HandleFormSubmit}>
                                 <div className="mb-3">

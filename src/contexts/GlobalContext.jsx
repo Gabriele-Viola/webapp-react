@@ -55,9 +55,11 @@ function GlobalContextProvider({ children }) {
         return stars
     }
 
-
+    function HandleFormToggle() {
+        document.getElementById('form-card').classList.toggle('d-none')
+    }
     const values = {
-        films, setFilms, filmUrl, selectedFilm, getSelectedFilm, stars
+        films, setFilms, filmUrl, selectedFilm, getSelectedFilm, stars, HandleFormToggle
     }
     return (
         <GlobalContext.Provider value={values}>
