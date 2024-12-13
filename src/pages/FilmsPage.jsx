@@ -13,12 +13,21 @@ export default function FilmsPage() {
 
 
                     <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
-                        {films?.map(film =>
+                        {films ?
+                            films?.map(film =>
+                                <div className="col" key={film.id}>
+                                    <FilmCard film={film} />
+                                </div>
+
+                            )
+                            : <h1>Loading...</h1>
+                        }
+                        {/* {films?.map(film =>
                             <div className="col" key={film.id}>
                                 <FilmCard film={film} />
                             </div>
 
-                        )}
+                        )} */}
 
                     </div>
                 </div>

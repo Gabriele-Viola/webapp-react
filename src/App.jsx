@@ -4,6 +4,7 @@ import DefLayout from "./Layout/DefLayout"
 import FilmSelected from "./pages/FilmSelected"
 import { GlobalContextProvider } from "./contexts/GlobalContext"
 import ScroolTop from "./components/ScrollTop"
+import NotFound from "./pages/NotFound"
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
 
               <Route index element={<FilmsPage />} />
               <Route path="/films/:id" element={<FilmSelected />} />
+              <Route path="*" element={<NotFound />} />
 
             </Route>
           </Routes>

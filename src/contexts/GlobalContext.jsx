@@ -6,7 +6,7 @@ function GlobalContextProvider({ children }) {
     const API_SERVER = import.meta.env.VITE_API_SERVER
     const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT
     const filmUrl = `${API_SERVER}${API_ENDPOINT}`
-    console.log(`${API_SERVER}${API_ENDPOINT}`);
+    // console.log(`${API_SERVER}${API_ENDPOINT}`);
     const [films, setFilms] = useState([])
     const [selectedFilm, SetSelectedFilm] = useState([])
 
@@ -15,7 +15,7 @@ function GlobalContextProvider({ children }) {
         fetch(`${API_SERVER}${API_ENDPOINT}`)
             .then((res => res.json()))
             .then(data => {
-                console.log(data.films);
+                // console.log(data.films);
                 setFilms(data.films)
             })
     }, [])
@@ -30,7 +30,6 @@ function GlobalContextProvider({ children }) {
     function stars(vote) {
         let fixVote = vote
         const afterDot = vote % 1 !== 0 && vote - parseInt(vote)
-        console.log(afterDot);
         if (afterDot < 0.5) {
             fixVote = Math.floor(vote)
         } else if (afterDot >= 0.5) {
