@@ -9,6 +9,7 @@ function GlobalContextProvider({ children }) {
     const [films, setFilms] = useState([])
     const [selectedFilm, SetSelectedFilm] = useState([])
     const [success, setSuccess] = useState('')
+    const voteArray = selectedFilm.reviews?.map(review => review.vote)
 
 
 
@@ -60,8 +61,14 @@ function GlobalContextProvider({ children }) {
         document.getElementById('form-card').classList.toggle('d-none')
     }
 
+    function average(ArrayOfNumber) {
+        let sumVote = 0
+        voteArray?.forEach(vote => sumVote += vote)
+        const average = sumVote / voteArray?.length
+        return average
+    }
     const values = {
-        films, setFilms, filmUrl, selectedFilm, getSelectedFilm, stars, HandleFormToggle, success, setSuccess
+        films, setFilms, filmUrl, selectedFilm, getSelectedFilm, stars, HandleFormToggle, success, setSuccess, average, voteArray
     }
     return (
         <GlobalContext.Provider value={values}>
