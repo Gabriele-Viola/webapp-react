@@ -57,8 +57,8 @@ function GlobalContextProvider({ children }) {
         return stars
     }
 
-    function HandleFormToggle() {
-        document.getElementById('form-card').classList.toggle('d-none')
+    function HandleFormToggle(item) {
+        document.getElementById(item).classList.toggle('d-none')
     }
 
     function average(ArrayOfNumber) {
