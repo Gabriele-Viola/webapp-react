@@ -22,12 +22,12 @@ export default function FilmSelected() {
             <section className="reviews">
                 <div className="container">
 
-                    <AppFormRev movie_id={id} />
                     <div className="text-end mb-4">
                         <strong>Average:</strong> <span className="text-warning">{stars(average(voteArray))}</span>
                         <div className="text-muted">{Number(average(voteArray)).toFixed(1)}</div>
 
                     </div>
+                    <AppFormRev movie_id={id} />
                     {!selectedFilm.reviews ? <h1>no found</h1> : selectedFilm.reviews.map(review => <ReviewCard key={review.id} review={review} />)}
 
 

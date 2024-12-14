@@ -9,8 +9,8 @@ export default function AppFormRev({ movie_id }) {
     const [rating, setRating] = useState(0)
     const [errorMessage, setErrorMessage] = useState()
 
-    function HandleinputToggle() {
-        document.getElementById('inputForm').classList.toggle('d-none')
+    function HandleinputToggle(item) {
+        document.getElementById(item).classList.toggle('d-none')
     }
 
     function HandleFormSubmit(e) {
@@ -40,8 +40,11 @@ export default function AppFormRev({ movie_id }) {
                     if (data.success) {
                         setSuccess(' Thanks for review!')
                     }
-                    setTimeout(HandleinputToggle(), 1000)
-
+                    setTimeout(() => {
+                        HandleinputToggle('form-card')
+                        setSuccess(' You already left a review!')
+                    }, 2000)
+                    HandleinputToggle('inputForm')
 
                 }).catch(err => console.error(err))
         }
@@ -57,7 +60,7 @@ export default function AppFormRev({ movie_id }) {
         <div id="form-card" className="card mb-4 d-none">
             <div className="card-body">
                 <form onSubmit={HandleFormSubmit}>
-                    {success && <div className="text-success"> <i className="bi bi-check"></i><strong>{success}</strong></div>}
+                    {success && <div id="text-success" className="text-success"> <i className="bi bi-check"></i><strong>{success}</strong></div>}
                     <div id="inputForm" className="">
 
                         <h3 className="mb-3">Add Review Below</h3>
