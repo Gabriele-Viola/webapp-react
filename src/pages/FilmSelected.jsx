@@ -7,8 +7,9 @@ import AppFormRev from "../components/AppFormRev"
 import Loading from "../components/Loading"
 export default function FilmSelected() {
     const { id } = useParams()
-    const { stars, success, average, voteArray, isLoading, setIsLoading, filmUrl } = useGlobalContext()
+    const { stars, success, average, isLoading, setIsLoading, filmUrl } = useGlobalContext()
     const [selectedFilm, SetSelectedFilm] = useState([])
+    const voteArray = selectedFilm.reviews?.map(review => review.vote)
 
 
     useEffect(() => {
@@ -44,7 +45,7 @@ export default function FilmSelected() {
 
                             </div>
                             <AppFormRev movie_id={id} />
-                            {!selectedFilm.reviews ? <h1>no found</h1> : selectedFilm.reviews.map(review => <ReviewCard key={review.id} review={review} />)}
+                            {selectedFilm.reviews?.map(review => <ReviewCard key={review.id} review={review} />)}
 
 
                         </div>
