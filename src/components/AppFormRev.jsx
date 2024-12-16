@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useGlobalContext } from "../contexts/GlobalContext"
 export default function AppFormRev({ movie_id }) {
-    const { success, setSuccess, errorMessage, setErrorMessage, filmUrl, refresh, setRefresh } = useGlobalContext()
+    const { success, setSuccess, errorMessage, setErrorMessage, filmUrl, setRefresh } = useGlobalContext()
     const id = movie_id
 
     const [userName, setUserName] = useState('')

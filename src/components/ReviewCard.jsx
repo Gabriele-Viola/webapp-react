@@ -52,17 +52,19 @@ export default function ReviewCard({ review }) {
     return (
         <>
             <div className="review card mb-3">
+
                 <div className="card-body">
+                    <h2>{review.id}</h2>
                     <p>{review.text}</p>
                     <span>by: {review.name}</span>
                     <div className="vote mt-3">
                         <strong>Vote: <span className="text-warning">{stars(review.vote)}</span></strong>
                     </div>
                     {created == updated ? <div>created: {created}</div> : <div>updated: {updated}</div>}
-                    <button className="btn bg-secondary-subtle text-dark position-absolute top-0 end-0 m-2" onClick={() => HandleFormToggle('modify-element')}><i className="bi bi-pencil"></i></button>
+                    <button className="btn bg-secondary-subtle text-dark position-absolute top-0 end-0 m-2" onClick={() => HandleFormToggle(`modify-element${review.id}`)}><i className="bi bi-pencil"></i></button>
                 </div>
             </div>
-            <ModifyRevForm review={review} />
+
         </>
     )
 }

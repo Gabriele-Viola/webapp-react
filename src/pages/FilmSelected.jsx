@@ -2,12 +2,13 @@ import { useParams } from "react-router"
 import ReviewCard from "../components/ReviewCard"
 import Banner from "../components/Banner"
 import { useGlobalContext } from "../contexts/GlobalContext"
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import AppFormRev from "../components/AppFormRev"
 import Loading from "../components/Loading"
+import ModifyRevForm from "../components/ModifyRevForm"
 export default function FilmSelected() {
     const { id } = useParams()
-    const { stars, success, average, isLoading, setIsLoading, filmUrl, refresh } = useGlobalContext()
+    const { stars, average, isLoading, setIsLoading, filmUrl, refresh } = useGlobalContext()
     const [selectedFilm, SetSelectedFilm] = useState([])
     const voteArray = selectedFilm.reviews?.map(review => review.vote)
 
@@ -53,7 +54,16 @@ export default function FilmSelected() {
                         <>
 
 
-                            {selectedFilm.reviews?.map(review => <ReviewCard key={review.id} review={review} />)}
+                            {selectedFilm.reviews?.map(review =>
+
+                                <React.Fragment key={review.id}>
+
+                                    <ModifyRevForm reviewId={review.id} />
+                                    <ReviewCard key={review.id} review={review} />
+                                </React.Fragment>
+
+
+                            )}
 
 
                         </>
