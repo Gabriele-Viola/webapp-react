@@ -21,8 +21,8 @@ export default function FilmSelected() {
             .then((res => res.json()))
             .then(data => {
                 const film = data
-                SetSelectedFilm(film)
                 setIsLoading(false)
+                SetSelectedFilm(film)
             })
 
 

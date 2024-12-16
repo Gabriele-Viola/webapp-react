@@ -14,8 +14,8 @@ export default function FilmsPage() {
         fetch(`${filmUrl}`)
             .then((res => res.json()))
             .then(data => {
-                setFilms(data.films)
                 setIsLoading(false)
+                setFilms(data.films)
             })
     }, [])
 
