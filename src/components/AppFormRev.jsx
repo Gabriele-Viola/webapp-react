@@ -1,13 +1,12 @@
 import { useState } from "react"
 import { useGlobalContext } from "../contexts/GlobalContext"
 export default function AppFormRev({ movie_id }) {
-    const { success, setSuccess } = useGlobalContext()
+    const { success, setSuccess, errorMessage, setErrorMessage, filmUrl, refresh, setRefresh } = useGlobalContext()
     const id = movie_id
 
     const [userName, setUserName] = useState('')
     const [review, setReview] = useState('')
     const [rating, setRating] = useState(0)
-    const [errorMessage, setErrorMessage] = useState()
 
     function HandleinputToggle(item) {
         document.getElementById(item).classList.toggle('d-none')
@@ -27,8 +26,7 @@ export default function AppFormRev({ movie_id }) {
             }
             console.log(formData);
 
-            const API_POST_REVIEW_URL = `http://localhost:3000/api/films/${id}/review`
-            fetch(API_POST_REVIEW_URL, {
+            fetch(`${filmUrl}/${id}/review`, {
                 method: 'POST',
                 body: JSON.stringify(formData),
                 headers: {
@@ -39,6 +37,7 @@ export default function AppFormRev({ movie_id }) {
                     console.log(data);
                     if (data.success) {
                         setSuccess(' Thanks for review!')
+                        setRefresh(1)
                     }
                     setTimeout(() => {
                         HandleinputToggle('form-card')

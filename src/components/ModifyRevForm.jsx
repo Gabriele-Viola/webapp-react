@@ -2,14 +2,28 @@ import { useState } from "react"
 import { useGlobalContext } from "../contexts/GlobalContext"
 import { useParams } from "react-router"
 
-export default function ModifyRevForm() {
+export default function ModifyRevForm({ review }) {
     const { HandleFormToggle } = useGlobalContext()
     const [modifyData, setModifyData] = useState({})
+    const [modReview, setModReview] = useState('')
     const { id } = useParams()
+    const { errorMessage, setErrorMessage } = useGlobalContext()
     function HandleFormModify(e) {
         e.preventDefault()
 
-        console.log(e.target, id);
+        if (modReview?.length < 10 || modReview == review?.text) {
+            setErrorMessage('the review should be at least 10 characters long')
+        } else {
+            setErrorMessage(null)
+            const formMod = {
+                id: review?.id,
+                movie_id: id,
+                text: modReview
+
+            }
+            console.log(formMod);
+
+        }
 
 
 
@@ -68,7 +82,7 @@ export default function ModifyRevForm() {
                     <h4 className="mb-3">Modify your review</h4>
                     <form onSubmit={HandleFormModify}>
                         <label htmlFor="modifyRev" className="mb-2">insert below your modify</label>
-                        <textarea name="modifyRev" id="modifyRev" className="form-control mb-3"></textarea>
+                        <textarea name="modifyRev" id="modifyRev" className="form-control mb-3" value={modReview} onChange={(e) => setModReview(e.target.value)}></textarea>
                         <button type="submit" className="btn btn-warning text-light">Submit your change</button>
                     </form>
                 </div>
