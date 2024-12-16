@@ -1,4 +1,5 @@
 import { useGlobalContext } from "../contexts/GlobalContext"
+import ModifyRevForm from "./ModifyRevForm"
 
 export default function ReviewCard({ review }) {
     const { stars, HandleFormToggle } = useGlobalContext()
@@ -61,6 +62,7 @@ export default function ReviewCard({ review }) {
                     <button className="btn bg-secondary-subtle text-dark position-absolute top-0 end-0 m-2" onClick={() => HandleFormToggle('modify-element')}><i className="bi bi-pencil"></i></button>
                 </div>
             </div>
+            <ModifyRevForm />
         </>
     )
 }

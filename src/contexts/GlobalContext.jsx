@@ -6,29 +6,12 @@ function GlobalContextProvider({ children }) {
     const API_SERVER = import.meta.env.VITE_API_SERVER
     const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT
     const filmUrl = `${API_SERVER}${API_ENDPOINT}`
-    const [films, setFilms] = useState([])
-    const [selectedFilm, SetSelectedFilm] = useState([])
     const [success, setSuccess] = useState('')
     const voteArray = selectedFilm.reviews?.map(review => review.vote)
+    const [isLoading, setIsLoading] = useState(false)
 
 
 
-    useEffect(() => {
-        fetch(`${API_SERVER}${API_ENDPOINT}`)
-            .then((res => res.json()))
-            .then(data => {
-                // console.log(data.films);
-                setFilms(data.films)
-            })
-    }, [])
-    function getSelectedFilm(id) {
-        fetch(`${filmUrl}/${id}`)
-            .then((res => res.json()))
-            .then(data => {
-                const film = data
-                SetSelectedFilm(film)
-            })
-    }
     function stars(vote) {
         let fixVote = vote
         const afterDot = vote % 1 !== 0 && vote - parseInt(vote)
@@ -68,7 +51,7 @@ function GlobalContextProvider({ children }) {
         return average
     }
     const values = {
-        films, setFilms, filmUrl, selectedFilm, getSelectedFilm, stars, HandleFormToggle, success, setSuccess, average, voteArray
+        filmUrl, selectedFilm, getSelectedFilm, stars, HandleFormToggle, success, setSuccess, average, voteArray, isLoading, setIsLoading,
     }
     return (
         <GlobalContext.Provider value={values}>
