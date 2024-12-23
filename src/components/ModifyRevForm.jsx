@@ -9,11 +9,6 @@ export default function ModifyRevForm({ reviewId }) {
     const { id } = useParams()
     const { errorMessage, setErrorMessage, filmUrl, success, setSuccess, setRefresh } = useGlobalContext()
 
-    if (!reviewId) {
-        return null; // Oppure return null per non mostrare nulla
-    }
-    // console.log(reviewId);
-
 
     function HandleFormModify(e) {
         e.preventDefault()
@@ -52,47 +47,6 @@ export default function ModifyRevForm({ reviewId }) {
         setModReview('')
 
 
-
-
-
-
-        // if (userName.length < 4 || review.length < 10 || rating == 0) {
-        //     setErrorMessage('name, rating or review is empty')
-        // } else {
-        //     setErrorMessage(null)
-        //     const formData = {
-        //         name: userName,
-        //         text: review,
-        //         vote: rating
-        //     }
-        //     console.log(formData);
-
-        //     const API_POST_REVIEW_URL = `http://localhost:3000/api/films/${id}/review`
-        //     fetch(API_POST_REVIEW_URL, {
-        //         method: 'POST',
-        //         body: JSON.stringify(formData),
-        //         headers: {
-        //             "Content-Type": "application/json"
-        //         }
-        //     }).then(res => res.json())
-        //         .then(data => {
-        //             console.log(data);
-        //             if (data.success) {
-        //                 setSuccess(' Thanks for review!')
-        //             }
-        //             setTimeout(() => {
-        //                 HandleinputToggle('form-card')
-        //                 setSuccess(' You already left a review!')
-        //             }, 2000)
-        //             HandleinputToggle('inputForm')
-
-        //         }).catch(err => console.error(err))
-        // }
-
-        // setUserName('')
-        // setReview('')
-        // setRating(0)
-
     }
 
 
@@ -109,6 +63,7 @@ export default function ModifyRevForm({ reviewId }) {
                     <form onSubmit={HandleFormModify}>
                         <label htmlFor="modifyRev" className="mb-2">insert below your modify{reviewId}</label>
                         <textarea name="modifyRev" id="modifyRev" className="form-control mb-3" value={modReview} onChange={(e) => setModReview(e.target.value)}></textarea>
+                        {errorMessage && <h2 className="text-danger py-2">minimum 10 characters required</h2>}
                         <button type="submit" className="btn btn-warning text-light">Submit your change</button>
                     </form>
                 </div>

@@ -3,11 +3,12 @@ import Banner from "../components/Banner";
 import FilmCard from "../components/FilmCard";
 import Loading from "../components/Loading";
 import { useGlobalContext } from "../contexts/GlobalContext";
+import OutServer from "../components/outServer";
 
 export default function FilmsPage() {
     const [films, setFilms] = useState([])
 
-    const { isLoading, setIsLoading, filmUrl } = useGlobalContext()
+    const { isLoading, setIsLoading, filmUrl, errorMessage, setErrorMessage } = useGlobalContext()
 
     useEffect(() => {
         setIsLoading(true)
@@ -16,6 +17,11 @@ export default function FilmsPage() {
             .then(data => {
                 setIsLoading(false)
                 setFilms(data.films)
+            }).catch((err) => {
+                console.error('fetch error:', err);
+                setIsLoading(false)
+                setErrorMessage(true)
+
             })
     }, [])
 
@@ -28,7 +34,7 @@ export default function FilmsPage() {
                     <section className="mb-4 py-2">
                         <div className="container">
 
-
+                            {errorMessage && <OutServer />}
                             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
                                 {films?.map(film => <div className="col" key={film.id}><FilmCard film={film} /></div>)}
                             </div>
