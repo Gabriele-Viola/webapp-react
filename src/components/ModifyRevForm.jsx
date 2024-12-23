@@ -5,8 +5,14 @@ import { useParams } from "react-router"
 export default function ModifyRevForm({ reviewId }) {
     const [modReview, setModReview] = useState('')
     const { id } = useParams()
-    const { errorMessage, setErrorMessage, filmUrl, success, setSuccess, setRefresh, HandleFormToggle } = useGlobalContext()
+    const { errorMessage, setErrorMessage, filmUrl, setRefresh } = useGlobalContext()
 
+
+    function HandleFormToggleRev(item) {
+        document.getElementById(item).classList.toggle('d-none')
+        setModReview('')
+        setErrorMessage('')
+    }
 
     function HandleFormModify(e) {
         e.preventDefault()
@@ -50,7 +56,7 @@ export default function ModifyRevForm({ reviewId }) {
 
     return (
         <div id={`modify-element${reviewId}`} className="modify-element h-100 w-100 position-fixed top-0 start-0 bg-dark bg-opacity-25 z-3 d-none" >
-            <div className="text-secondary text-end m-5" onClick={() => HandleFormToggle(`modify-element${reviewId}`)} >
+            <div className="text-secondary text-end m-5" onClick={() => HandleFormToggleRev(`modify-element${reviewId}`)} >
                 <button className="btn bg-danger shadow ">
                     <i className="bi bi-x-lg"></i>
                 </button>
