@@ -1,7 +1,7 @@
 import 'ldrs/mirage'
 import { useGlobalContext } from '../contexts/GlobalContext'
 import OutServer from './outServer'
-export default function Loading() {
+export default function Loading({ found }) {
     const { errorMessage } = useGlobalContext()
     return (
         <>

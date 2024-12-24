@@ -9,6 +9,10 @@ export default function ReviewCard({ review }) {
     const updateDate = (review.updated_at).slice(0, 10)
     const createHour = (review.created_at).slice(11, 19)
     const updateHour = (review.updated_at).slice(11, 19)
+    const info = updateHour.toLocaleString()
+    console.log(info);
+
+
     let update
 
     if (createDate == updateDate && createHour == updateHour) {
@@ -33,8 +37,8 @@ export default function ReviewCard({ review }) {
                     </div>
 
                     {update ? <>
-                        <div><strong className="text-success">updated</strong>: {updateDate} at {updateHour}</div>
-                        <div className="text-body-secondary">created: {createDate} at {createHour}</div>
+                        <div><strong className="text-success">updated</strong>: {updateDate}</div>
+                        <div className="text-body-secondary">created: {createDate}</div>
                     </>
 
                         : <div><strong>created</strong>: {createDate}</div>}

@@ -8,8 +8,10 @@ import Loading from "../components/Loading"
 import ModifyRevForm from "../components/ModifyRevForm"
 export default function FilmSelected() {
     const { id } = useParams()
-    const { stars, average, isLoading, setIsLoading, filmUrl, refresh } = useGlobalContext()
+    const { stars, average, isLoading, setIsLoading, filmUrl, refresh, setErrorMessage, setNoFound } = useGlobalContext()
     const [selectedFilm, SetSelectedFilm] = useState([])
+
+
     const voteArray = selectedFilm.reviews?.map(review => review.vote)
 
 
@@ -21,10 +23,23 @@ export default function FilmSelected() {
         fetch(`${filmUrl}/${id}`)
             .then((res => res.json()))
             .then(data => {
-                const film = data
-                SetSelectedFilm(film)
-                setIsLoading(false)
-            })
+                const found = data.err
+                if (!found) {
+                    SetSelectedFilm(data)
+                    setIsLoading(false)
+
+                } else {
+                    setNoFound(data.err)
+                    setErrorMessage(true)
+                }
+
+                // SetSelectedFilm(data)
+                console.log(found);
+
+                // setIsLoading(false)
+            }).catch((err) =>
+                console.error(err)
+            )
 
 
 
@@ -34,6 +49,7 @@ export default function FilmSelected() {
     return (
         <>
             {isLoading ? <Loading /> :
+
                 <>
                     <Banner title={`your selected film is: ${selectedFilm.title}`} subtitle={`${selectedFilm.abstract}`} leadtext={`${selectedFilm.genre}`} button={'add reviews'}
 
@@ -44,14 +60,10 @@ export default function FilmSelected() {
                         <div className="text-muted">{Number(average(voteArray)).toFixed(1)}</div>
 
                     </div>
-                </>
-            }
+                    <section className="reviews">
+                        <div className="container">
+                            <AppFormRev movie_id={id} />
 
-            <section className="reviews">
-                <div className="container">
-                    <AppFormRev movie_id={id} />
-                    {isLoading ? <Loading /> :
-                        <>
 
 
                             {selectedFilm.reviews?.map(review =>
@@ -66,10 +78,12 @@ export default function FilmSelected() {
                             )}
 
 
-                        </>
-                    }
-                </div>
-            </section>
+
+                        </div>
+                    </section>
+                </>
+            }
+
 
         </>
 

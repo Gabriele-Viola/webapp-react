@@ -7,7 +7,7 @@ import { useGlobalContext } from "../contexts/GlobalContext";
 export default function FilmsPage() {
     const [films, setFilms] = useState([])
 
-    const { isLoading, setIsLoading, filmUrl, errorMessage, setErrorMessage } = useGlobalContext()
+    const { isLoading, setIsLoading, filmUrl, setErrorMessage } = useGlobalContext()
 
     useEffect(() => {
         setIsLoading(true)
@@ -26,7 +26,9 @@ export default function FilmsPage() {
 
     return (
         <>
-            {isLoading ? <Loading /> :
+            {isLoading ?
+                <Loading />
+                :
 
                 <>
                     <Banner title='All-Films' subtitle='realy all' leadtext='Lorem ipsum dolor sit amet.' />
