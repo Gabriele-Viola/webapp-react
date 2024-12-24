@@ -1,4 +1,4 @@
-import { useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
 import ReviewCard from "../components/ReviewCard"
 import Banner from "../components/Banner"
 import { useGlobalContext } from "../contexts/GlobalContext"
@@ -8,9 +8,9 @@ import Loading from "../components/Loading"
 import ModifyRevForm from "../components/ModifyRevForm"
 export default function FilmSelected() {
     const { id } = useParams()
-    const { stars, average, isLoading, setIsLoading, filmUrl, refresh, setErrorMessage, setNoFound } = useGlobalContext()
+    const { stars, average, isLoading, setIsLoading, filmUrl, refresh, setErrorMessage } = useGlobalContext()
     const [selectedFilm, SetSelectedFilm] = useState([])
-
+    const navigateTo = useNavigate()
 
     const voteArray = selectedFilm.reviews?.map(review => review.vote)
 
@@ -29,8 +29,9 @@ export default function FilmSelected() {
                     setIsLoading(false)
 
                 } else {
-                    setNoFound(data.err)
+                    // setNoFound(data.err)
                     setErrorMessage(true)
+                    navigateTo('/404')
                 }
 
                 // SetSelectedFilm(data)

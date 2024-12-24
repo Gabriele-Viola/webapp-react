@@ -10,7 +10,6 @@ function GlobalContextProvider({ children }) {
     const [refresh, setRefresh] = useState(0)
     const [errorMessage, setErrorMessage] = useState()
     const [isLoading, setIsLoading] = useState(false)
-    const [noFound, setNoFound] = useState(false)
 
 
     function stars(vote) {
@@ -51,7 +50,7 @@ function GlobalContextProvider({ children }) {
         return average
     }
     const values = {
-        filmUrl, stars, HandleFormToggle, success, setSuccess, average, isLoading, setIsLoading, errorMessage, setErrorMessage, refresh, setRefresh, noFound, setNoFound
+        filmUrl, stars, HandleFormToggle, success, setSuccess, average, isLoading, setIsLoading, errorMessage, setErrorMessage, refresh, setRefresh
     }
     return (
         <GlobalContext.Provider value={values}>
